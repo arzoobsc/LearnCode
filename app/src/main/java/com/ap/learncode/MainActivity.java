@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
-    
+
     public void createExampleList() {
         mExampleList = new ArrayList<>();
         mExampleList.add(new Items(R.drawable.ic_baseline_play_arrow_24, "Line 1"));
