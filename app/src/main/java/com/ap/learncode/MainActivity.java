@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private ArrayList<Items> mExampleList;
+
+    private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -21,41 +23,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Items> items = new ArrayList<>();
-        items.add(new Items(R.drawable.ic_baseline_play_arrow_24, "TextView"));
-        items.add(new Items(R.drawable.ic_baseline_play_arrow_24, "Button"));
-        items.add(new Items(R.drawable.ic_baseline_play_arrow_24, "EditText"));
+        createExampleList();
+        buildRecyclerView();
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
+    }
 
+    public void removeItem(int position) {
+        mExampleList.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+    
+    public void createExampleList() {
+        mExampleList = new ArrayList<>();
+        mExampleList.add(new Items(R.drawable.ic_baseline_play_arrow_24, "Line 1"));
+        mExampleList.add(new Items(R.drawable.ic_baseline_play_arrow_24, "Line 2"));
+        mExampleList.add(new Items(R.drawable.ic_baseline_play_arrow_24, "Line 3"));
+    }
+    public void buildRecyclerView() {
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new MyAdapter(items);
-
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(mAdapter);
+        mAdapter = new MyAdapter(mExampleList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                Log.i("TAG", "OnItemClick: out : "+position);
-                switch (position) {
-                    case 0:
-                        Toast.makeText(MainActivity.this, "1st position : " + position, Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(MainActivity.this, "2nd position : " + position, Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(MainActivity.this, "3rd position : " + position, Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        Toast.makeText(MainActivity.this, "position : " + position, Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                Log.i("TAG", "OnItemClick: "+position);
+            }
+
+            @Override
+            public void onPlayClick(int position) {
+                Log.i("TAG", "onPlayClick:  "+position);
             }
         });
-
 
     }
 }

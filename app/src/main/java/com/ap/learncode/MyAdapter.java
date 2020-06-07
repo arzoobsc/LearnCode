@@ -20,6 +20,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public interface OnItemClickListener {
         void OnItemClick(int position);
+        void onPlayClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -60,10 +61,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             playImage = itemView.findViewById(R.id.playImage);
             tvTitle = itemView.findViewById(R.id.itemText);
 
-            playImage.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
+
+                    if (listener != null){
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION)
                             listener.OnItemClick(position);
@@ -71,20 +73,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 }
             });
 
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    if (listener != null){
-//                        int position = getAdapterPosition();
-//                        if (position != RecyclerView.NO_POSITION)
-//                            listener.OnItemClick(position);
-//                        Log.i("TAG", "onClick: "+v.getId());
-//                    }
-//                }
-//            });
-
-
+            playImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION)
+                            listener.onPlayClick(position);
+                    }
+                }
+            });
         }
     }
 
