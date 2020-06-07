@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Learn Code</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="demo">
+        Lorem Ipsum is simply dummy text of the printing and typesetting \n
+        industry. Lorem Ipsum has been the industry\'s standard dummy \n
+        text ever since the 1500s, when an unknown printer took a galley\n
+        of type and scrambled it to make a type specimen book. It has\n
+        survived not only five centuries, but also the leap into electronic\n
+        typesetting, remaining essentially unchanged. It was popularised\n
+        in the 1960s with the release of Letraset sheets containing \n
+        Lorem Ipsum passages, and more recently with desktop publishing\n
+        software like Aldus PageMaker including versions of Lorem Ipsum.
+    </string>
+
+    <string name="text_Demo_SingleLine">Simple Text</string>
+
+
+
 </resources>
